@@ -1,0 +1,27 @@
+        var foo = "Olá, Este site te apresentará o que é o samba e muito mais!"; alert(foo);
+
+        let d = new Date();
+        document.body.innerHTML = "<h5>" + d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds() 
+        "</h5>";
+
+        let intervalo;
+    
+        function iniciarLocutora() {
+          const todoConteudo = document.documentElement.innerText;
+          const synth = window.speechSynthesis;
+          const voz = new SpeechSynthesisUtterance(todoConteudo);
+          voz.lang = 'pt-BR'; 
+    
+          synth.speak(voz);
+    
+          intervalo = setInterval(() => {
+            synth.speak(voz);
+          }, 500000);
+        }
+    
+        function pararLocutora() {
+          const synth = window.speechSynthesis;
+    
+          synth.cancel();
+          clearInterval(intervalo);
+        }
